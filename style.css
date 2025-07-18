@@ -1,0 +1,170 @@
+:root {
+    --primary-color: #005A9C; /* Bleu France */
+    --secondary-color: #E1000F; /* Rouge Marianne */
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --text-color: #333;
+    --border-color: #dee2e6;
+    --shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Marianne', Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.actions button, .button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.actions button:hover, .button:hover {
+    background-color: #003d6b;
+}
+
+.actions button#save-client { background-color: #28a745; }
+.actions button#save-client:hover { background-color: #218838; }
+.button { background-color: #6c757d; }
+.button:hover { background-color: #5a6268; }
+
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.card h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+}
+
+.results-section, .graph-section {
+    background: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 25px;
+}
+
+.results-section h2, .graph-section h2 {
+    margin-top: 0;
+}
+
+#results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px;
+}
+
+.result-card {
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--primary-color);
+    padding: 15px;
+    border-radius: 5px;
+}
+.result-card.tva-reduite { border-left-color: var(--secondary-color); }
+
+.result-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+}
+
+.result-card p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+}
+
+.result-card strong {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.placeholder {
+    font-style: italic;
+    color: #6c757d;
+}
+
+.chart-container {
+    position: relative;
+    height: 500px;
+    width: 100%;
+}

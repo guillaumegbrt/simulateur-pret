@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur de Capacité d'Emprunt</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Simulateur de Capacité d'Emprunt</h1>
+            <div class="actions">
+                <button id="run-simulation">🚀 Simuler</button>
+                <button id="save-client">💾 Enregistrer</button>
+                <label for="load-client-input" class="button">📤 Charger</label>
+                <input type="file" id="load-client-input" accept=".json" style="display: none;">
+            </div>
+        </header>
+
+        <main>
+            <div class="input-grid">
+                <div class="card">
+                    <h2>Revenus Mensuels (€)</h2>
+                    <div class="input-group">
+                        <label for="salaire">Salaire net</label>
+                        <input type="number" id="salaire" value="3000">
+                    </div>
+                    <div class="input-group">
+                        <label for="immobilier">Revenus immobiliers</label>
+                        <input type="number" id="immobilier" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="pct_immobilier">Prise en compte (%)</label>
+                        <input type="number" id="pct_immobilier" value="70" step="1" min="0" max="100">
+                    </div>
+                     <div class="input-group">
+                        <label for="financier">Revenus financiers</label>
+                        <input type="number" id="financier" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="pct_financier">Prise en compte (%)</label>
+                        <input type="number" id="pct_financier" value="100" step="1" min="0" max="100">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Charges Mensuelles (€)</h2>
+                    <div class="input-group">
+                        <label for="conso">Crédits à la consommation</label>
+                        <input type="number" id="conso" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="immobilier_credit">Crédit immobilier</label>
+                        <input type="number" id="immobilier_credit" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="leasing">Leasing / LOA</label>
+                        <input type="number" id="leasing" value="0">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Paramètres du Projet</h2>
+                     <div class="input-group">
+                        <label for="liquidites">Apport / Liquidités (€)</label>
+                        <input type="number" id="liquidites" value="20000">
+                    </div>
+                    <div class="input-group">
+                        <label for="duree">Durée du prêt (années)</label>
+                        <input type="number" id="duree" value="25">
+                    </div>
+                    <div class="input-group">
+                        <label for="taux_interet">Taux d'intérêt du prêt (%)</label>
+                        <input type="number" id="taux_interet" value="3.5" step="0.01">
+                    </div>
+                     <div class="input-group">
+                        <label for="taux_assurance">Taux d'assurance (%)</label>
+                        <input type="number" id="taux_assurance" value="0.35" step="0.01">
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>Paramètres Avancés</h2>
+                     <div class="input-group">
+                        <label for="parts_fiscales">Nombre de parts fiscales</label>
+                        <input type="number" id="parts_fiscales" value="2" step="0.5">
+                    </div>
+                    <div class="input-group">
+                        <label for="nb_personnes">Nombre de personnes</label>
+                        <input type="number" id="nb_personnes" value="2">
+                    </div>
+                    <div class="input-group">
+                        <label for="departement">Département</label>
+                        <select id="departement"></select>
+                    </div>
+                    <div class="input-group">
+                        <label for="commune">Commune</label>
+                        <select id="commune"></select>
+                    </div>
+                     <div class="input-group">
+                        <label for="taux_endettement">Taux d'endettement max (%)</label>
+                        <input type="number" id="taux_endettement" value="35">
+                    </div>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="is_new_build" checked> Bien neuf</label>
+                        <label><input type="checkbox" id="ptz_eligible" checked> Éligible PTZ</label>
+                        <label><input type="checkbox" id="action_logement" checked> Action Logement</label>
+                        <label><input type="checkbox" id="tva_reduite" checked> TVA réduite</label>
+                        <label><input type="checkbox" id="include_notaire" checked> Inclure frais de notaire</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h2>Résultats de la Simulation</h2>
+                <div id="results-container">
+                    <p class="placeholder">Cliquez sur "Simuler" pour voir les résultats.</p>
+                </div>
+            </div>
+            
+            <div class="graph-section">
+                <h2>Graphique Comparatif</h2>
+                <div class="chart-container">
+                     <canvas id="results-chart"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
