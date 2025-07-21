@@ -44,6 +44,10 @@
                         <label for="pct_financier">Prise en compte (%)</label>
                         <input type="number" id="pct_financier" value="100" step="1" min="0" max="100">
                     </div>
+                    <div class="input-group">
+                        <label for="rfr_n2">Revenu Fiscal de Référence N-2 (€)</label>
+                        <input type="number" id="rfr_n2" value="40000">
+                    </div>
                 </div>
 
                 <div class="card">
@@ -106,8 +110,10 @@
                     </div>
                     <div class="checkbox-group">
                         <label><input type="checkbox" id="is_new_build" checked> Bien neuf</label>
-                        <label><input type="checkbox" id="ptz_eligible" checked> Éligible PTZ</label>
-                        <label><input type="checkbox" id="action_logement" checked> Action Logement</label>
+                        <div id="new-build-options" style="display: block; margin-left: 20px; margin-top: 10px;">
+                            <label><input type="radio" name="type_bien" value="appartement" checked> Appartement</label>
+                            <label><input type="radio" name="type_bien" value="maison"> Maison</label>
+                        </div>
                         <label><input type="checkbox" id="tva_reduite" checked> TVA réduite</label>
                         <label><input type="checkbox" id="include_notaire" checked> Inclure frais de notaire</label>
                     </div>
