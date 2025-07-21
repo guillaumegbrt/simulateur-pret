@@ -6,7 +6,7 @@
     <title>Simulateur de Capacité d'Emprunt</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -32,21 +32,17 @@
                         <label for="immobilier">Revenus immobiliers</label>
                         <input type="number" id="immobilier" value="0">
                     </div>
-                    <div class="input-group">
-                        <label for="pct_immobilier">Prise en compte (%)</label>
-                        <input type="number" id="pct_immobilier" value="70" step="1" min="0" max="100">
+                     <div class="input-group">
+                        <label for="pct_immobilier">Dont (%)</label>
+                        <input type="number" id="pct_immobilier" value="100" step="0.01" min="0" max="100">
                     </div>
                      <div class="input-group">
                         <label for="financier">Revenus financiers</label>
                         <input type="number" id="financier" value="0">
                     </div>
-                    <div class="input-group">
-                        <label for="pct_financier">Prise en compte (%)</label>
-                        <input type="number" id="pct_financier" value="100" step="1" min="0" max="100">
-                    </div>
-                    <div class="input-group">
-                        <label for="rfr_n2">Revenu Fiscal de Référence N-2 (€)</label>
-                        <input type="number" id="rfr_n2" value="40000">
+                     <div class="input-group">
+                        <label for="pct_financier">Dont (%)</label>
+                        <input type="number" id="pct_financier" value="100" step="0.01" min="0" max="100">
                     </div>
                 </div>
 
@@ -89,6 +85,10 @@
                 <div class="card">
                     <h2>Paramètres Avancés</h2>
                      <div class="input-group">
+                        <label for="rfr_n2">RFR N-2 (€)</label>
+                        <input type="number" id="rfr_n2" value="30000">
+                    </div>
+                     <div class="input-group">
                         <label for="parts_fiscales">Nombre de parts fiscales</label>
                         <input type="number" id="parts_fiscales" value="2" step="0.5">
                     </div>
@@ -108,14 +108,40 @@
                         <label for="taux_endettement">Taux d'endettement max (%)</label>
                         <input type="number" id="taux_endettement" value="35">
                     </div>
-                    <div class="checkbox-group">
-                        <label><input type="checkbox" id="is_new_build" checked> Bien neuf</label>
-                        <div id="new-build-options" style="display: block; margin-left: 20px; margin-top: 10px;">
+                </div>
+
+                <div class="card">
+                    <h2>Type de Bien</h2>
+                    <div class="radio-group" id="property-type-radios">
+                        <label><input type="radio" name="property_type" value="neuf" checked> Neuf</label>
+                        <label><input type="radio" name="property_type" value="recent"> Récent < 5 ans</label>
+                        <label><input type="radio" name="property_type" value="ancien"> Ancien > 5 ans</label>
+                    </div>
+
+                    <div id="new-build-options" style="display:none;">
+                        <h3>Options Neuf</h3>
+                        <div class="radio-group">
                             <label><input type="radio" name="type_bien" value="appartement" checked> Appartement</label>
                             <label><input type="radio" name="type_bien" value="maison"> Maison</label>
                         </div>
-                        <label><input type="checkbox" id="tva_reduite" checked> TVA réduite</label>
-                        <label><input type="checkbox" id="include_notaire" checked> Inclure frais de notaire</label>
+                        <div id="notary-options" class="radio-group">
+                            <label><input type="radio" name="notary_type" value="none" checked> Pas de frais réduits</label>
+                            <label><input type="radio" name="notary_type" value="reduced"> Frais réduits (2.5%)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label id="tva-reduite-label"><input type="checkbox" id="tva_reduite"> TVA réduite</label>
+                        </div>
+                    </div>
+
+                    <div id="old-build-options" style="display:none;">
+                        <h3>Options Ancien</h3>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" id="has_works"> Avec travaux</label>
+                        </div>
+                        <div id="work-cost-group" class="input-group" style="display:none;">
+                            <label for="work_cost">Coût des travaux (€)</label>
+                            <input type="number" id="work_cost" value="0">
+                        </div>
                     </div>
                 </div>
             </div>
